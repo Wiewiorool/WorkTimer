@@ -36,7 +36,7 @@ public class Main {
 
         String name = month + ".txt";
         FileWriter monthFile = new FileWriter(name);
-        monthFile.write(Integer.toString(sum));
+        monthFile.write("Summary of month: " + Integer.toString(sum));
         monthFile.close();
 
         Calendar last = Calendar.getInstance();
