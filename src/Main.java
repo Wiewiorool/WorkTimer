@@ -30,7 +30,7 @@ public class Main {
             String[] a = scanner1.nextLine().split(" ");
             sum += Integer.parseInt(a[1]);
         }
-       /* Calendar last = Calendar.getInstance();
+        /*Calendar last = Calendar.getInstance();
         last.add(Calendar.MONTH, -1);
         String lastMonth = last.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
         Month lastMonth1 = Month.valueOf(month.toUpperCase());*/
