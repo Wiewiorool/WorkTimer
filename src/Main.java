@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -9,6 +13,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
         var scanner = new Scanner(System.in);
         int time = scanner.nextInt();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -30,10 +35,10 @@ public class Main {
             String[] a = scanner1.nextLine().split(" ");
             sum += Integer.parseInt(a[1]);
         }
-        /*Calendar last = Calendar.getInstance();
+        /* Calendar last = Calendar.getInstance();
         last.add(Calendar.MONTH, -1);
         String lastMonth = last.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-        Month lastMonth1 = Month.valueOf(month.toUpperCase());*/
+        Month lastMonth1 = Month.valueOf(month.toUpperCase()); */
 
         BufferedReader reader = new BufferedReader(new FileReader(month + ".txt"));
 
@@ -45,6 +50,37 @@ public class Main {
             myWriter.close();
         }
 
+   /* }
+
+    public class TimerButtons implements ActionListener {
+        JFrame frame;
+        JTextField textField;
+        JButton[] functionButtons = new JButton[3];
+        JButton addButton, sumButton;
+        JPanel panel;
+
+        Font myFont = new Font("Times New Roman", Font.PLAIN,15);
+
+        TimerButtons(){
+            frame = new JFrame("Work Timer");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(420,550);
+            frame.setLayout(null);
+            frame.getColorModel();
+
+            textField = new JTextField();
+            textField.setBounds(50,25,300,50);
+            textField.setFont(myFont);
+            textField.setEditable(false);
+
+            addButton = new JButton("Add hours of work");
+
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }*/
     }
 
 }
