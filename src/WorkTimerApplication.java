@@ -14,7 +14,7 @@ public class WorkTimerApplication {
     private static double yearlySalary = 0;
 
     private static String h = " ";
-    //private static String directory = "Users/Wiewior/WorkTimer";
+    private static String directory = "C:/Users/Wiewior/WorkTimer/";
     private static Calendar c = Calendar.getInstance();
     private static String month = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
     private static String fileName = month + ".txt";
@@ -23,25 +23,28 @@ public class WorkTimerApplication {
     private static LocalDateTime now = LocalDateTime.now();
 
     public static void main(String[] args) throws IOException {
+        System.out.println(" .----------------.  .----------------.  .----------------.  .----------------. ");
+        System.out.println("| .--------------. || .--------------. || .--------------. || .--------------. |");
+        System.out.println("| | _____  _____ | || |     ____     | || |  _______     | || |  ___  ____   | |");
+        System.out.println("| ||_   _||_   _|| || |   .'    `.   | || | |_   __ \\    | || | |_  ||_  _|  | |");
+        System.out.println("| |  | | /\\ | |  | || |  /  .--.  \\  | || |   | |__) |   | || |   | |_/ /    | |");
+        System.out.println("| |  | |/  \\| |  | || |  | |    | |  | || |   |  __ /    | || |   |  __'.    | |");
+        System.out.println("| |  |   /\\   |  | || |  \\  `--'  /  | || |  _| |  \\ \\_  | || |  _| |  \\ \\_  | |");
+        System.out.println("| |  |__/  \\__|  | || |   `.____.'   | || | |____| |___| | || | |____||____| | |");
+        System.out.println("| |              | || |              | || |              | || |              | |");
+        System.out.println("| '--------------' || '--------------' || '--------------' || '--------------' |");
+        System.out.println(" '----------------'  '----------------'  '----------------'  '----------------' ");
+
         var scanner = new Scanner(System.in);
+        File file = new File(directory);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
 
-       /* File file = new File(directory);
+        FileWriter myWriter = new FileWriter(directory + fileName, true);
 
-        try {
-            boolean isFileCreated = file.createNewFile();
-            if (isFileCreated) {
-                System.out.println("File created successfully.");
-            } else {
-                System.out.println("File already exists or an error occurred.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-        FileWriter myWriter = new FileWriter(fileName, true);
-
-
-        System.out.println("How much hour's did You worked today?");
+        System.out.println(" ");
+        System.out.println("How many hour's did You worked today?");
         int time = scanner.nextInt();
         if (time == 1) {
             h = String.valueOf(Hours.HOUR).toLowerCase();
@@ -54,14 +57,14 @@ public class WorkTimerApplication {
         myWriter.flush();
         System.out.println("Successfully wrote to the file.");
 
-        var scanner1 = new Scanner(new File(fileName));
+        var scanner1 = new Scanner(new File(directory + fileName));
 
         while (scanner1.hasNextLine()) {
             String[] a = scanner1.nextLine().split(" ");
             sum += Integer.parseInt(a[1]);
         }
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        BufferedReader reader = new BufferedReader(new FileReader(directory + fileName));
 
         while (reader.readLine() != null) lines++;
         reader.close();
