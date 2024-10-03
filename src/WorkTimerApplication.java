@@ -14,9 +14,10 @@ public class WorkTimerApplication {
     private static double yearlySalary = 0;
 
     private static String h = " ";
-    private static String directory = "/Users/Wiewior/WorkTimer";
+    //private static String directory = "Users/Wiewior/WorkTimer";
     private static Calendar c = Calendar.getInstance();
     private static String month = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+    private static String fileName = month + ".txt";
 
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static LocalDateTime now = LocalDateTime.now();
@@ -24,14 +25,20 @@ public class WorkTimerApplication {
     public static void main(String[] args) throws IOException {
         var scanner = new Scanner(System.in);
 
-       /* File files = new File(directory);
-        if (!files.exists()) {
-            if (files.mkdirs()) {
-                System.out.println("Directory is created! " + directory);
+       /* File file = new File(directory);
+
+        try {
+            boolean isFileCreated = file.createNewFile();
+            if (isFileCreated) {
+                System.out.println("File created successfully.");
             } else {
-                System.out.println("Failed to create directory!");
+                System.out.println("File already exists or an error occurred.");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }*/
+
+        FileWriter myWriter = new FileWriter(fileName, true);
 
 
         System.out.println("How much hour's did You worked today?");
@@ -42,23 +49,23 @@ public class WorkTimerApplication {
             h = String.valueOf(Hours.HOURS).toLowerCase();
         }
 
-        FileWriter myWriter = new FileWriter(month + ".txt", true);
         myWriter.write(dtf.format(now) + " " + Integer.toString(time) + " " + h);
         myWriter.write("\n");
         myWriter.flush();
         System.out.println("Successfully wrote to the file.");
 
-        var scanner1 = new Scanner(new File(month + ".txt"));
+        var scanner1 = new Scanner(new File(fileName));
 
         while (scanner1.hasNextLine()) {
             String[] a = scanner1.nextLine().split(" ");
             sum += Integer.parseInt(a[1]);
         }
 
-        BufferedReader reader = new BufferedReader(new FileReader(month + ".txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
         while (reader.readLine() != null) lines++;
         reader.close();
+
         if (lines == YearMonth.now().lengthOfMonth()) {
             myWriter.write("Work time summary of " + month + " " + sum);
             myWriter.write("\n");
