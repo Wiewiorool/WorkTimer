@@ -1,38 +1,45 @@
 import java.io.*;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Main {
+public class WorkTimerApplication {
 
     private static double salaryPerHour = 31.44;
     private static int sum = 0;
     private static int lines = 0;
     private static double yearlySalary = 0;
-    private static String hours = "hours";
-    private static String hour = "hour";
+
     private static String h = " ";
+    private static String directory = "/Users/Wiewior/WorkTimer";
+    private static Calendar c = Calendar.getInstance();
+    private static String month = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
+
+    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static LocalDateTime now = LocalDateTime.now();
 
     public static void main(String[] args) throws IOException {
+        var scanner = new Scanner(System.in);
+
+       /* File files = new File(directory);
+        if (!files.exists()) {
+            if (files.mkdirs()) {
+                System.out.println("Directory is created! " + directory);
+            } else {
+                System.out.println("Failed to create directory!");
+            }
+        }*/
 
 
         System.out.println("How much hour's did You worked today?");
-        var scanner = new Scanner(System.in);
         int time = scanner.nextInt();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        Calendar c = Calendar.getInstance();
-        String month = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-        Month month1 = Month.valueOf(month.toUpperCase());
-
         if (time == 1) {
-            h = hour;
+            h = String.valueOf(Hours.HOUR).toLowerCase();
         } else {
-            h = hours;
+            h = String.valueOf(Hours.HOURS).toLowerCase();
         }
 
         FileWriter myWriter = new FileWriter(month + ".txt", true);
@@ -47,10 +54,6 @@ public class Main {
             String[] a = scanner1.nextLine().split(" ");
             sum += Integer.parseInt(a[1]);
         }
-        /* Calendar last = Calendar.getInstance();
-        last.add(Calendar.MONTH, -1);
-        String lastMonth = last.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-        Month lastMonth1 = Month.valueOf(month.toUpperCase()); */
 
         BufferedReader reader = new BufferedReader(new FileReader(month + ".txt"));
 
