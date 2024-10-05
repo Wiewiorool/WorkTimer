@@ -28,7 +28,6 @@ public class WorkTimerApplication {
     public static void main(String[] args) throws IOException {
         createDirectory();
 
-
         var scanner = new Scanner(System.in);
 
         FileWriter myWriter = new FileWriter(directory + fileName, true);
