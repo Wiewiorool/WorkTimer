@@ -13,6 +13,10 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class GUI01 {
+    private static JFrame frame = new JFrame("Number");
+    private static JTextField textField = new JTextField(10);
+    private static JButton button = new JButton("Add your work time");
+
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static LocalDateTime now = LocalDateTime.now();
 
@@ -23,15 +27,11 @@ public class GUI01 {
     private static String fileName = month + ".txt";
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Number");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
         frame.setLayout(new FlowLayout());
-
-        JTextField textField = new JTextField(10);
         frame.add(textField);
-
-        JButton button = new JButton("Add your work time");
         frame.add(button);
 
         button.addActionListener(new ActionListener() {
@@ -42,7 +42,6 @@ public class GUI01 {
                 try {
                     int number = Integer.parseInt(text);
                     toFile(number);
-
                     textField.setText(" ");
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(frame, "Please enter a valid number.");
